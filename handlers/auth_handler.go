@@ -5,10 +5,10 @@ import (
 	"labireen-customer/services"
 	"os"
 
-	"labireen-customer/utilities/crypto"
-	"labireen-customer/utilities/jwtx"
-	"labireen-customer/utilities/mail"
-	"labireen-customer/utilities/response"
+	"labireen-customer/pkg/crypto"
+	"labireen-customer/pkg/jwtx"
+	"labireen-customer/pkg/mail"
+	"labireen-customer/pkg/response"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -85,7 +85,7 @@ func (aH *authHandlerImpl) LoginCustomer(ctx *gin.Context) {
 
 	id, err := aH.svc.LoginCustomer(request)
 	if err != nil {
-		response.Error(ctx, http.StatusUnauthorized, "Failed to logged in", err.Error())
+		response.Error(ctx, http.StatusNotFound, "Failed to logged in", err.Error())
 		return
 	}
 

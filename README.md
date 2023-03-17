@@ -47,7 +47,6 @@ The following endpoints are available through
         "email": " ",
         "password": " ",
         "password_confirm": " ",
-        "phone_number": " ",
         "verification_code": " "
     }
 }

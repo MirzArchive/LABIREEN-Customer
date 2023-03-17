@@ -3,8 +3,8 @@ package services
 import (
 	"errors"
 	"labireen-customer/entities"
+	"labireen-customer/pkg/crypto"
 	"labireen-customer/repositories"
-	"labireen-customer/utilities/crypto"
 
 	"github.com/google/uuid"
 )
@@ -39,7 +39,6 @@ func (asr *authServiceImpl) RegisterCustomer(customer entities.CustomerRegister)
 		Name:             customer.Name,
 		Email:            customer.Email,
 		Password:         hashedPassword,
-		PhoneNumber:      customer.PhoneNumber,
 		VerificationCode: customer.VerificationCode,
 	}
 

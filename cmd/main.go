@@ -3,10 +3,10 @@ package main
 import (
 	"labireen-customer/config"
 	"labireen-customer/handlers"
+	"labireen-customer/pkg/mail"
 	"labireen-customer/repositories"
 	"labireen-customer/routes"
 	"labireen-customer/services"
-	"labireen-customer/utilities/mail"
 	"log"
 	"os"
 
@@ -55,5 +55,5 @@ func main() {
 	}
 	customerRoutes.Register()
 
-	app.Run(":" + os.Getenv("PORT"))
+	app.Run("127.0.0.1:55353")
 }

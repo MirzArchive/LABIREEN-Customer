@@ -1,9 +1,9 @@
 package handlers
 
 import (
+	"labireen-customer/pkg/jwtx"
+	"labireen-customer/pkg/response"
 	"labireen-customer/services"
-	"labireen-customer/utilities/jwtx"
-	"labireen-customer/utilities/response"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

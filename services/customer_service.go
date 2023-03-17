@@ -31,13 +31,12 @@ func (csr *customerServiceImpl) GetCustomer(id uuid.UUID) (entities.CustomerRequ
 	}
 
 	userResp := entities.CustomerRequest{
-		Name:        user.Name,
-		Email:       user.Email,
-		Password:    user.Password,
-		PhoneNumber: user.PhoneNumber,
-		Photo:       user.Photo,
-		CreatedAt:   user.CreatedAt,
-		UpdatedAt:   user.UpdatedAt,
+		Name:      user.Name,
+		Email:     user.Email,
+		Password:  user.Password,
+		Photo:     user.Photo,
+		CreatedAt: user.CreatedAt,
+		UpdatedAt: user.UpdatedAt,
 	}
 
 	return userResp, nil
