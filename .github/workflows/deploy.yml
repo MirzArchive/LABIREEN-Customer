@@ -21,7 +21,7 @@ jobs:
       - name: 📦 Go Build
         run: go build -o main cmd/main.go
 
-      - name: 📁 Send files via Rsync
+      - name: 📁 Send files via Rsyncc
         uses: Burnett01/rsync-deployments@5.2.1
         with:
             switches: -avzr
