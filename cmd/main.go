@@ -55,5 +55,5 @@ func main() {
 	}
 	customerRoutes.Register()
 
-	app.Run("127.0.0.1:55353")
+	app.Run(os.Getenv("APP_PORT"))
 }
