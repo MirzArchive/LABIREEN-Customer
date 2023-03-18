@@ -3,7 +3,6 @@ module labireen-customer
 go 1.20
 
 require (
-	github.com/gin-contrib/timeout v0.0.3
 	github.com/gin-gonic/gin v1.9.0
 	github.com/golang-jwt/jwt/v5 v5.0.0-rc.1
 	github.com/google/uuid v1.3.0

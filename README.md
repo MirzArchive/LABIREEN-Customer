@@ -11,8 +11,7 @@ LABIREEN is an acronym of Colaboration and Integration of FILKOM Canteen
 Before starting this project on your local environment, make sure you have [Git][Git Website] and [Go][Go Website] programming language installed.
 
 ```shell
-git clone https://github.com/MirzaHilmi/LABIREEN.git
-cd server/internal/auth
+git clone https://github.com/MirzaHilmi/LABIREEN-Customer.git
 go run cmd/main.go
 ```
 
@@ -29,9 +28,9 @@ The following endpoints are available through
 #### POST `{url}/auth/register`
 **Parameters**
 | Parameter        | Type   | Required | Description                                                     |
-|------------------|--------|----------|-----------------------------------------------------------------|
+| ---------------- | ------ | -------- | --------------------------------------------------------------- |
 | name             | string | YES      | Customer full name                                              |
-| email            | string | YES      | Customer Customer email (should be a valid email)                          |
+| email            | string | YES      | Customer Customer email (should be a valid email)               |
 | password         | string | YES      | Customer Account Password (should be at least 8 character long) |
 | password_confirm | string | YES      | The value should be the same as "password" field                |
 | phone_number     | string | YES      | Customer Account phone number (max 15 character long)           |
@@ -47,6 +46,7 @@ The following endpoints are available through
         "email": " ",
         "password": " ",
         "password_confirm": " ",
+        "phone_number": " ",
         "verification_code": " "
     }
 }
@@ -56,14 +56,14 @@ The following endpoints are available through
     "status": "error",
     "code": 500,
     "message": "Failed to register user",
-    "data": "Error 1062 (23000): Duplicate entry '123456789' for key 'customers.phone_number'"
+    "data": "Error 1062 (23000): Duplicate entry '123456789' for key 'Merchants.phone_number'"
 }
 ```
 
 #### POST `{url}/auth/login`
 **Parameters**
 | Parameter | Type   | Required | Description                            |
-|-----------|--------|----------|----------------------------------------|
+| --------- | ------ | -------- | -------------------------------------- |
 | email     | string | YES      | Customer registered and verified email |
 | password  | string | YES      | Customer registered Account password   |
 
@@ -86,7 +86,76 @@ The following endpoints are available through
 }
 ```
 
+#### GET `{url}/Customer/profile`
+**Parameters Header**
+| Parameter | Type   | Required | Description                                 |
+| --------- | ------ | -------- | ------------------------------------------- |
+| token     | string | YES      | JWT Token obtained from user sign-in before |
+
+**Response**
+```json
+{
+    "status": "success",
+    "code": 200,
+    "message": "success",
+    "data": {
+        "name": "Hello There",
+        "email": "hiiiiii@gmail.com",
+        "password": "im a super crypted password",
+        "created_at": "2023-03-18T08:45:20.922+07:00",
+        "updated_at": "2023-03-18T08:54:00.466+07:00"
+    }
+}
+```
+
+#### POST `{url}/auth/forgotpassword`
+**Parameters**
+| Parameter | Type   | Required | Description           |
+| --------- | ------ | -------- | --------------------- |
+| email     | string | YES      | Registered user email |
+
+**Response**
+```json
+{
+    "status": "success",
+    "code": 200,
+    "message": "Reset password request successfuly created, please check your email",
+    "data": {
+        "ID": "6982508f-1982-491d-8f4f-2d9d17dff20f",
+        "Name": "Dummy Wummies 2",
+        "Email": "hellooow@gmail.com",
+        "Password": "im a super crypted password",
+        "Photo": "",
+        "VerificationCode": "",
+        "Verified": true,
+        "CreatedAt": "2023-03-18T13:49:11.371+07:00",
+        "UpdatedAt": "2023-03-18T13:49:59.681+07:00"
+    }
+}
+```
+
+#### PATCH `{url}/auth/resetpassword/:reset-token`
+**Parameters**
+| Parameter        | Type   | Required | Description                                 |
+| ---------------- | ------ | -------- | ------------------------------------------- |
+| password         | string | YES      | New password that atleast 8 characters long |
+| password_confirm | string | YES      | Should be the same as password field before |
+
+**Response**
+```json
+{
+    "status": "success",
+    "code": 200,
+    "message": "Successfuly change user password",
+    "data": {
+        "password": "aku-reset-passwordnya-ya",
+        "password_confirm": "aku-reset-passwordnya-ya"
+    }
+}
+```
+
 For more about API Documentation, please see [here][Postman]
+
 ## Features
 
 Here is a list of features available in this project :
@@ -94,18 +163,19 @@ Here is a list of features available in this project :
 * Customer Account Sign-in
 * Email Verification for Customer Accounts
 * Customer Account Profile Editing
+* Forget Password with email verification
 
 ## Links
 
-- Project Author: https://github.com/MirzaHilmi/
-- Repository: https://github.com/MirzaHilmi/LABIREEN
+- Project Author: https://github.com/MirzaHilmi/LABIREEN-Customer
+- Repository: https://github.com/MirzaHilmi/LABIREEN-Customer
 - Issue tracker: https://github.com/MirzaHilmi/LABIREEN/issues
   - In case of sensitive bugs like security vulnerabilities, please contact
    exquisitemirza@gmail.com directly instead of using issue tracker. We value your effort
     to improve the security and privacy of this project!
 - Related projects :
   - My other project : 
-    - https://github.com/MirzaHilmi/LABIREEN-Customer
+    - https://github.com/MirzaHilmi/LABIREEN
     - https://github.com/MirzaHilmi/LABIREEN-Merchant
 
 
@@ -128,5 +198,4 @@ Yes! We welcome contributions from anyone, under the same terms as the license. 
 [Git Website]: https://git-scm.com/
 [Go Website]: https://go.dev/
 [Postman Website]: https://www.postman.com/
-
 [Postman]: https://documenter.getpostman.com/view/26384436/2s93JzKfV3
