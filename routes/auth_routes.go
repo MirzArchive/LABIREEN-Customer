@@ -16,4 +16,6 @@ func (r *AuthRoutes) Register() {
 	auth.POST("/register", r.AuthHandler.RegisterCustomer)
 	auth.POST("/login", r.AuthHandler.LoginCustomer)
 	auth.GET("/verify/:verification-code", r.AuthHandler.VerifyEmail)
+	auth.POST("/forgotpassword", r.AuthHandler.ForgotPassword)
+	auth.PATCH("/resetpassword/:reset-token", r.AuthHandler.ResetPassword)
 }

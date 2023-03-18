@@ -13,10 +13,10 @@ type CustomerService interface {
 }
 
 type customerServiceImpl struct {
-	repo repositories.AuthRepository
+	repo repositories.CustomerRepository
 }
 
-func NewCustomerService(repo repositories.AuthRepository) CustomerService {
+func NewCustomerService(repo repositories.CustomerRepository) CustomerService {
 	return &customerServiceImpl{repo}
 }
 
@@ -33,7 +33,6 @@ func (csr *customerServiceImpl) GetCustomer(id uuid.UUID) (entities.CustomerRequ
 	userResp := entities.CustomerRequest{
 		Name:      user.Name,
 		Email:     user.Email,
-		Password:  user.Password,
 		Photo:     user.Photo,
 		CreatedAt: user.CreatedAt,
 		UpdatedAt: user.UpdatedAt,
